@@ -26,7 +26,7 @@ export default function Home() {
   return (
     
     <div className="relative min-h-screen w-full overflow-x-hidden">
-      <Header />
+
       <div className="fixed inset-0 z-0">
         <GridScan
           sensitivity={0.55}
@@ -43,7 +43,7 @@ export default function Home() {
           scanDelay={0}
         />
       </div>
-
+      <Header />
       <div id="about" className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center w-full min-h-screen z-10 relative pointer-events-none">
         
         <div  className="flex flex-col items-center lg:items-start justify-center p-8 lg:pl-20 pointer-events-auto">

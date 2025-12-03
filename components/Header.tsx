@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export const Header = () => {
     return (
-        <header className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
+        <header className=" lg:fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
             <div className="container mx-auto px-4 py-6 flex items-center justify-between"> 
                 <div className="text-white text-2xl font-bold">
                     <a href="/" className="hover:text-violet-500 transition-colors">
