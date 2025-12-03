@@ -18,18 +18,16 @@ export default function CarouselTech() {
     { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
   ];
 
-  // duplicamos para efecto infinito
   const duplicated = [...tech, ...tech];
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
 
-    const speed = 2; // px por frame aprox (ajusta a tu gusto)
+    const speed = 2; 
     let lastTime = performance.now();
 
     const step = (now: number) => {
-      // pausa si hover
       if (!container || pausedRef.current) {
         rafRef.current = requestAnimationFrame(step);
         return;
@@ -38,12 +36,9 @@ export default function CarouselTech() {
       const dt = now - lastTime;
       lastTime = now;
 
-      // mover en función del tiempo transcurrido para tener velocidad más estable
-      // 0.8 px/frame ≈ 0.8 * (dt / 16.67) px
       const px = speed * (dt / 16.67);
       container.scrollLeft += px;
 
-      // si llegamos a la mitad (segunda copia), restamos la mitad para "mover" al equivalente sin salto
       if (container.scrollLeft >= container.scrollWidth / 2) {
         container.scrollLeft -= container.scrollWidth / 2;
       }
@@ -59,27 +54,19 @@ export default function CarouselTech() {
     };
   }, []);
 
-  // handlers para pausar en hover
-  const onMouseEnter = () => (pausedRef.current = true);
-  const onMouseLeave = () => (pausedRef.current = false);
-
   return (
     <div className="w-full overflow-hidden py-8">
-      {/* contenedor visible con ancho total; el área que se desplaza es este div */}
       <div
         ref={scrollRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+
         className="w-full overflow-x-auto scrollbar-hide"
-        // evita que el usuario vea "snap" al hacer click-drag: permite desplazamiento suave
         style={{ scrollBehavior: "auto" }}
       >
-        {/* contenido: inline-flex para que el contenido sea más ancho que el contenedor */}
         <div className="inline-flex gap-6 px-4 py-2">
           {duplicated.map((item, index) => (
             <div
               key={index}
-              className="min-w-[240px] h-[240px]
+              className="min-w-60 h-60
                 rounded-2xl shadow-lg  backdrop-blur-3xl
                 flex flex-col items-center justify-center p-6
                 hover:scale-105 transition-transform"

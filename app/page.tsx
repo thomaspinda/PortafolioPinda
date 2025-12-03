@@ -2,12 +2,27 @@ import { GridScan } from "@/components/GridScan";
 import CarouselTech from "@/components/CarouselTech";
 import ExperienceCards from "@/components/ExperienceCards";
 import { Header } from "@/components/Header";
+import { ProjectCard } from "@/components/ProjectCard";
+import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faGithub, faReact, faNodeJs, faPython } from '@fortawesome/free-brands-svg-icons';
+
 
 export default function Home() {
-  
+  const projects = [
+
+  {
+    title: "Portafolio Personal",
+    description: "Este mismo sitio web desarrollado con las últimas tecnologías.",
+    imageSrc: "/images/Portafolio.png",
+    liveLink: "https://github.com/thomaspinda/PortafolioPinda",
+    techStack: [
+      { icon: faReact, name: "Next.js/React" },
+      { icon: faNodeJs, name: "Node.js" },
+    ],
+  },
+];
   return (
     
     <div className="relative min-h-screen w-full overflow-x-hidden">
@@ -36,7 +51,7 @@ export default function Home() {
           <div className="relative w-48 h-48 mb-6 rounded-full p-1 bg-linear-to-tr from-violet-500 to-amber-300 shadow-[0_0_30px_rgba(139,92,246,0.3)]">
             <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
               <Image 
-                src="/images.jpeg" 
+                src="/images/Yo.jpg" 
                 alt="Thomas Pinda"
                 fill
                 className="object-cover"
@@ -84,7 +99,7 @@ export default function Home() {
                    transition-all duration-300 
                    hover:bg-white/10 hover:shadow-violet-900/20 hover:border-white/20"
           >
-            <h2 className="text-3xl font-bold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-white">
+            <h2 className="text-3xl font-bold mb-6 tracking-tight text-transparent bg-clip-text bg-linear-to-r from-amber-200 to-white">
               Perfil Profesional
             </h2>
 
@@ -130,7 +145,26 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
+      <div id="projects" className="flex flex-col items-center justify-center p-8 z-10 relative w-full min-h-screen pointer-events-none">
+          <div className="pointer-events-auto w-full flex flex-col items-center">
+            <h1 className="text-5xl font-bold mb-10 text-white">Proyectos Destacados</h1>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+              {projects.map((project, index) => (
+                <ProjectCard 
+                  key={index}
+                  title={project.title}
+                  description={project.description}
+                  imageSrc={project.imageSrc}
+                  liveLink={project.liveLink}
+                  techStack={project.techStack}
+                />
+              ))}
+            </div>
+          </div>
+
+      </div>
+      <Footer />
     </div>
   );
 }

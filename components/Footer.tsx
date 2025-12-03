@@ -2,9 +2,9 @@
 import { div } from "framer-motion/client";
 import { useEffect, useRef, useState } from "react";
 
-export const Header = () => {
+export const Footer = () => {
     return (
-        <header className="fixed top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
+        <footer className="bottom-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
             <div className="container mx-auto px-4 py-6 flex items-center justify-between"> 
                 <div className="text-white text-2xl font-bold">
                     <a href="/" className="hover:text-violet-500 transition-colors">
@@ -33,6 +33,6 @@ export const Header = () => {
 
             </div>
             </div>
-        </header>
+        </footer>
     );
 }
