@@ -1,13 +1,17 @@
 import { GridScan } from "@/components/GridScan";
 import CarouselTech from "@/components/CarouselTech";
 import ExperienceCards from "@/components/ExperienceCards";
-import Image from "next/image"; // Importamos el componente de imagen
+import { Header } from "@/components/Header";
+import Image from "next/image";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export default function Home() {
+  
   return (
+    
     <div className="relative min-h-screen w-full overflow-x-hidden">
-      
-      {/* --- FONDO INTERACTIVO --- */}
+      <Header />
       <div className="fixed inset-0 z-0">
         <GridScan
           sensitivity={0.55}
@@ -25,11 +29,11 @@ export default function Home() {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center w-full min-h-screen z-10 relative pointer-events-none">
+      <div id="about" className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center w-full min-h-screen z-10 relative pointer-events-none">
         
-        <div className="flex flex-col items-center lg:items-start justify-center p-8 lg:pl-20 pointer-events-auto">
+        <div  className="flex flex-col items-center lg:items-start justify-center p-8 lg:pl-20 pointer-events-auto">
           
-          <div className="relative w-48 h-48 mb-6 rounded-full p-1 bg-gradient-to-tr from-violet-500 to-amber-300 shadow-[0_0_30px_rgba(139,92,246,0.3)]">
+          <div className="relative w-48 h-48 mb-6 rounded-full p-1 bg-linear-to-tr from-violet-500 to-amber-300 shadow-[0_0_30px_rgba(139,92,246,0.3)]">
             <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
               <Image 
                 src="/images.jpeg" 
@@ -47,6 +51,27 @@ export default function Home() {
           <h2 className="text-xl lg:text-2xl text-gray-300 font-light">
             Ingeniería Civil en Informática
           </h2>
+          <div className="flex space-x-6 mt-4">
+            <a 
+              href="https://www.linkedin.com/in/thomas-pinda-98bb00345/" 
+              className="flex items-center text-gray-400 hover:text-blue-400 transition duration-300 group"
+              >
+              <i className="fab fa-linkedin text-3xl"></i>
+              <span className="ml-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition duration-300">
+              LinkedIn
+            </span>
+          </a>
+
+          <a 
+            href="https://github.com/thomaspinda" 
+            className="flex items-center text-gray-400 hover:text-white transition duration-300 group"
+            >
+              <i className="fab fa-github text-3xl"></i>
+              <span className="ml-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition duration-300">
+                GitHub
+              </span>
+            </a>
+          </div>
         </div>
 
         <div className="w-full flex justify-center px-4 lg:pr-20 pointer-events-auto">
@@ -72,11 +97,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- SECCIÓN EXPERIENCIA --- */}
-      {/* También usamos pointer-events-none en el contenedor y auto en el contenido */}
-      <div className="flex flex-col items-center justify-center p-8 z-10 relative w-full min-h-screen pointer-events-none">
+      <div id="experience" className="flex flex-col items-center justify-center p-8 z-10 relative w-full min-h-screen pointer-events-none">
           <div className="pointer-events-auto w-full flex flex-col items-center">
-            {/* Corregí el typo "Profecional" a "Profesional" */}
             <h1 className="text-5xl font-bold mb-10 text-white">Experiencia Profesional</h1>
 
             <ExperienceCards
@@ -97,8 +119,7 @@ export default function Home() {
           </div>
       </div>
 
-      {/* --- SECCIÓN STACK --- */}
-      <div className="flex flex-col items-center justify-center w-full h-screen relative z-10 pointer-events-none">
+      <div id="stack" className="flex flex-col items-center justify-center w-full h-screen relative z-10 pointer-events-none">
         <div className="pointer-events-auto w-full flex flex-col items-center">
           <h1 className="text-5xl font-bold mb-16 text-center text-white">
             Stack Recurrente

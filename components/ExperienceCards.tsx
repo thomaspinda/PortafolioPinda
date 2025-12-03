@@ -50,7 +50,6 @@ export default function ExperienceCards({ experiences }: ExperienceCardsProps) {
         </motion.button>
       </div>
 
-      {/* Modal Component */}
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );

@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
+
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -41,8 +42,8 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   <p className="text-white font-medium">thomaspinda23@gmail.com</p>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
-                  <p className="text-sm text-gray-400">LinkedIn</p>
-                  <p className="text-white font-medium">https://www.linkedin.com/in/thomas-pinda-98bb00345</p>
+                  <p className="text-sm text-gray-400">WhatsApp</p>
+                  <p className="text-white font-medium">+56 9 5626 6311</p>
                 </div>
               </div>
             </div>
