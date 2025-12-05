@@ -1,13 +1,13 @@
 // components/ProjectCard.tsx
 
 import Image from 'next/image';
-import Link from 'next/link'; // Usamos Link de Next.js para una mejor navegación
+import Link from 'next/link'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'; 
+import { ElementType } from 'react'; // Importar ElementType para tipar componentes React
 
-// Asumiendo que has definido estas interfaces en este o un archivo separado
 export interface TechIcon {
-  icon: IconDefinition;
+  icon: IconDefinition | ElementType; 
   name: string;
 }
 
@@ -27,6 +27,15 @@ export function ProjectCard({
   techStack 
 }: ProjectCardProps) {
   
+  const renderIcon = (icon: IconDefinition | ElementType) => {
+    if (typeof icon === 'object' && 'iconName' in icon) {
+      return <FontAwesomeIcon icon={icon as IconDefinition} className="text-xl" />;
+    }
+    
+    const CustomIcon = icon as ElementType;
+    return <CustomIcon className="text-xl" />;
+  };
+
   return (
     <Link 
       href={liveLink} 
@@ -66,9 +75,9 @@ export function ProjectCard({
               <div 
                 key={index} 
                 className="flex items-center text-gray-400 hover:text-white transition duration-200"
-                title={tech.name} // Muestra el nombre al pasar el mouse
+                title={tech.name} 
               >
-                <FontAwesomeIcon icon={tech.icon} className="text-xl" />
+                {renderIcon(tech.icon)}
               </div>
             ))}
           </div>

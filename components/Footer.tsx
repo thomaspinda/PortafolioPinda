@@ -1,37 +1,61 @@
 "use client";
-import { div } from "framer-motion/client";
-import { useEffect, useRef, useState } from "react";
+import { faLinkedin, faGithub, faReact, faNodeJs, faPython } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Footer = () => {
     return (
-        <footer className="bottom-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
-            <div className="container mx-auto px-4 py-6 flex items-center justify-between"> 
-                <div className="text-white text-2xl font-bold">
-                    <a href="/" className="hover:text-violet-500 transition-colors">
-                        Thomas Pinda
-                    </a>
+        <footer id="contact" className="w-full z-40 bg-transparent backdrop-blur-lg border-t border-white/10 mt-20">
+            <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
+                
+                <div className="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; {new Date().getFullYear()} Thomas Pinda. Todos los derechos reservados.
                 </div>
-                <nav className="space-x-6">
-                    
-                    <a href="#about" className="text-white hover:text-violet-500 transition-colors">
-                        Sobre mí
-                    </a>
-                    <a href="#experience " className="text-white hover:text-violet-500 transition-colors">
-                        Experiencia
-                    </a>
-                    <a href="#stack" className="text-white hover:text-violet-500 transition-colors">
-                        Stack tecnológico
-                    </a>
-                    <a href="#projects" className="text-white hover:text-violet-500 transition-colors">
-                        Proyectos
-                    </a>
-                    <a href="#contact" className="text-white hover:text-violet-500 transition-colors">
-                        Contacto
-                    </a>
-                </nav>
-                <div className="flex items-center space-x-4">
 
+                <nav className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-8">
+                    
+                    <div className="flex items-center text-white hover:text-violet-500 transition-colors">
+                        <FontAwesomeIcon icon={faPhone} className="mr-2 text-violet-400" />
+                        <a 
+                            href="tel:+56956266311" 
+                            className="text-sm font-medium"
+                        >
+                            +56 9 5626 6311
+                        </a>
+                    </div>
+
+                    {/* Correo Electrónico */}
+                    <div className="flex items-center text-white hover:text-violet-500 transition-colors">
+                        <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-violet-400" />
+                        <a 
+                            href="mailto:thomaspinda@gmail.com" 
+                            className="text-sm font-medium"
+                        >
+                            thomaspinda@gmail.com
+                        </a>
+                    </div>
+                </nav>
             </div>
+            
+            <div className="flex justify-center space-x-6 pb-6 pt-4">
+                <a 
+                    href="https://www.linkedin.com/in/thomas-pinda-98bb00345/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-gray-400 hover:text-blue-400 transition duration-300"
+                    aria-label="LinkedIn"
+                >
+                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                </a>
+                <a 
+                    href="https://github.com/thomaspinda" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-gray-400 hover:text-white transition duration-300"
+                    aria-label="GitHub"
+                >
+                    <FontAwesomeIcon icon={faGithub} size="2x" />
+                </a>
             </div>
         </footer>
     );

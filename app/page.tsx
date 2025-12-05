@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub, faReact, faNodeJs, faPython } from '@fortawesome/free-brands-svg-icons';
-
+import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 
 export default function Home() {
   const projects = [
@@ -18,8 +18,10 @@ export default function Home() {
     imageSrc: "/images/Portafolio.png",
     liveLink: "https://github.com/thomaspinda/PortafolioPinda",
     techStack: [
-      { icon: faReact, name: "Next.js/React" },
+      { icon: faReact, name: "React.js" },
       { icon: faNodeJs, name: "Node.js" },
+      { icon: SiTailwindcss, name: "Tailwind CSS" },
+      { icon: SiNextdotjs, name: "Next.js" },
     ],
   },
 ];
