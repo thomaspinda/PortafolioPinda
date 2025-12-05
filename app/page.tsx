@@ -10,6 +10,7 @@ import { faLinkedin, faGithub, faReact, faNodeJs, faPython } from '@fortawesome/
 import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { promises as fs } from 'fs';
 import path from 'path';
+import { RANDOM_PROFILE_IMAGES, DEFAULT_PROFILE_IMAGE } from "@/app/config/profileImages";
   const imagesDir = path.join(process.cwd(), 'public', 'images', 'random-profile');
   async function getProfileImages() {
   try {
