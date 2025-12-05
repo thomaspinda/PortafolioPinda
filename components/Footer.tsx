@@ -2,8 +2,18 @@
 import { faLinkedin, faGithub, faReact, faNodeJs, faPython } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Mail, Smartphone } from 'lucide-react'; 
 
 export const Footer = () => {
+    const emailAddress = "thomaspinda23@gmail.com";
+    const phoneNumber = "+56 9 5626 6311";
+    
+    const subject = encodeURIComponent("Oferta de trabajo");
+    const body = encodeURIComponent("Hola Thomas,\n\nMe interesaría discutir una oportunidad contigo.");
+    
+    const mailtoLink = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+    const whatsappLink = "https://wa.me/56956266311";
+
     return (
         <footer id="contact" className="w-full z-40 bg-transparent backdrop-blur-lg border-t border-white/10 mt-20">
             <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
@@ -17,7 +27,7 @@ export const Footer = () => {
                     <div className="flex items-center text-white hover:text-violet-500 transition-colors">
                         <FontAwesomeIcon icon={faPhone} className="mr-2 text-violet-400" />
                         <a 
-                            href="tel:+56956266311" 
+                            href={whatsappLink} 
                             className="text-sm font-medium"
                         >
                             +56 9 5626 6311
@@ -28,7 +38,7 @@ export const Footer = () => {
                     <div className="flex items-center text-white hover:text-violet-500 transition-colors">
                         <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-violet-400" />
                         <a 
-                            href="mailto:thomaspinda@gmail.com" 
+                            href={mailtoLink} 
                             className="text-sm font-medium"
                         >
                             thomaspinda@gmail.com

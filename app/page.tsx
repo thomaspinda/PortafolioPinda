@@ -8,8 +8,35 @@ import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub, faReact, faNodeJs, faPython } from '@fortawesome/free-brands-svg-icons';
 import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
+import { promises as fs } from 'fs';
+import path from 'path';
+  const imagesDir = path.join(process.cwd(), 'public', 'images', 'random-profile');
+  async function getProfileImages() {
+  try {
+    // Leer el contenido del directorio
+    const filenames = await fs.readdir(imagesDir);
 
-export default function Home() {
+    // Filtrar para asegurarse de que solo se incluyan archivos de imagen
+    const imageFiles = filenames.filter(file => 
+      /\.(jpe?g|png|gif|webp)$/i.test(file) // Expresión regular para tipos comunes de imagen
+    );
+
+    // Mapear los nombres de archivo a sus rutas públicas
+    return imageFiles.map(file => `/images/random-profile/${file}`);
+  } catch (error) {
+    console.error("Error al leer el directorio de imágenes:", error);
+    return []; // Retorna un array vacío si hay un error
+  }
+}
+  const getRandomImage = (images: string[]) => {
+    if (images.length === 0) return "/images/Yo.jpg"; // Retorna una imagen por defecto si no hay fotos
+    const randomIndex = Math.floor(Math.random() * images.length);
+    return images[randomIndex];
+  };  
+export default async function Home() {
+  const randomProfileImages = await getProfileImages();
+  
+  const profileImageSrc = getRandomImage(randomProfileImages);
   const projects = [
 
   {
@@ -53,7 +80,7 @@ export default function Home() {
           <div className="relative w-48 h-48 mb-6 rounded-full p-1 bg-linear-to-tr from-violet-500 to-amber-300 shadow-[0_0_30px_rgba(139,92,246,0.3)]">
             <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
               <Image 
-                src="/images/Yo.jpg" 
+                src={profileImageSrc} 
                 alt="Thomas Pinda"
                 fill
                 className="object-cover"
