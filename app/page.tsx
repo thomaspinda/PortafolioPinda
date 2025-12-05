@@ -11,6 +11,7 @@ import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { promises as fs } from 'fs';
 import path from 'path';
 import { RANDOM_PROFILE_IMAGES, DEFAULT_PROFILE_IMAGE } from "@/app/config/profileImages";
+
   const imagesDir = path.join(process.cwd(), 'public', 'images', 'random-profile');
   async function getProfileImages() {
   try {
@@ -29,15 +30,15 @@ import { RANDOM_PROFILE_IMAGES, DEFAULT_PROFILE_IMAGE } from "@/app/config/profi
     return []; // Retorna un array vacío si hay un error
   }
 }
-  const getRandomImage = (images: string[]) => {
-    if (images.length === 0) return "/images/Yo.jpg"; // Retorna una imagen por defecto si no hay fotos
-    const randomIndex = Math.floor(Math.random() * images.length);
-    return images[randomIndex];
-  };  
+const getRandomImage = (images: string[]) => {
+  if (images.length === 0) return DEFAULT_PROFILE_IMAGE; // Imagen de respaldo
+  const randomIndex = Math.floor(Math.random() * images.length);
+  return images[randomIndex];
+};
 export default async function Home() {
   const randomProfileImages = await getProfileImages();
   
-  const profileImageSrc = getRandomImage(randomProfileImages);
+const profileImageSrc = getRandomImage(RANDOM_PROFILE_IMAGES);
   const projects = [
 
   {
