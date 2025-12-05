@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-
+// Opcional: Importar íconos para mejorar la visualización del contacto
+import { Mail, Smartphone } from 'lucide-react'; 
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -8,6 +9,16 @@ interface ContactModalProps {
 }
 
 export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
+
+  const emailAddress = "thomaspinda23@gmail.com";
+  const phoneNumber = "+56 9 5626 6311";
+  
+  const subject = encodeURIComponent("Oferta de trabajo");
+  const body = encodeURIComponent("Hola Thomas,\n\nMe interesaría discutir una oportunidad contigo.");
+  
+  const mailtoLink = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+  const whatsappLink = "https://wa.me/56956266311";
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -37,14 +48,33 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
               <h3 className="text-2xl font-bold text-white mb-4">Contáctame</h3>
 
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
-                  <p className="text-sm text-gray-400">Email</p>
-                  <p className="text-white font-medium">thomaspinda23@gmail.com</p>
-                </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
-                  <p className="text-sm text-gray-400">WhatsApp</p>
-                  <p className="text-white font-medium">+56 9 5626 6311</p>
-                </div>
+                
+                <a 
+                    href={mailtoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer group"
+                >
+                    <Mail size={24} className="mr-3 text-violet-400 group-hover:text-violet-300 transition-colors mt-1" />
+                    <div>
+                        <p className="text-sm text-gray-400">Email</p>
+                        <p className="text-white font-medium">{emailAddress}</p>
+                    </div>
+                </a>
+                
+                <a 
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer group"
+                >
+                    <Smartphone size={24} className="mr-3 text-violet-400 group-hover:text-violet-300 transition-colors mt-1" />
+                    <div>
+                        <p className="text-sm text-gray-400">WhatsApp</p>
+                        <p className="text-white font-medium">{phoneNumber}</p>
+                    </div>
+                </a>
+
               </div>
             </div>
           </motion.div>
