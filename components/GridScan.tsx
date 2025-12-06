@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { EffectComposer, RenderPass, EffectPass, BloomEffect, ChromaticAberrationEffect } from 'postprocessing';
 import * as THREE from 'three';
-import * as faceapi from 'face-api.js';
 
 type GridScanProps = {
   enableWebcam?: boolean;
@@ -679,10 +678,20 @@ export const GridScan: React.FC<GridScanProps> = ({
     };
   }, [enableGyro, uiFaceActive]);
 
-  useEffect(() => {
+useEffect(() => {
     let canceled = false;
+    
+    // **AÑADE ESTA IMPORTACIÓN DINÁMICA**
+    const importFaceApi = async () => {
+        // Importa face-api.js aquí, donde solo se ejecuta en el navegador
+        return (await import('face-api.js'));
+    };
+    
     const load = async () => {
       try {
+        // Llama a la importación dinámica
+        const faceapi = await importFaceApi(); 
+        
         await Promise.all([
           faceapi.nets.tinyFaceDetector.loadFromUri(modelsPath),
           faceapi.nets.faceLandmark68TinyNet.loadFromUri(modelsPath)
@@ -698,9 +707,14 @@ export const GridScan: React.FC<GridScanProps> = ({
     };
   }, [modelsPath]);
 
-  useEffect(() => {
+useEffect(() => {
     let stop = false;
     let lastDetect = 0;
+    
+    // **AÑADE ESTA FUNCIÓN DE IMPORTACIÓN**
+    const importFaceApi = async () => {
+        return (await import('face-api.js'));
+    };
 
     const start = async () => {
       if (!enableWebcam || !modelsReady) return;
@@ -718,8 +732,10 @@ export const GridScan: React.FC<GridScanProps> = ({
         return;
       }
 
-      const opts = new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.5 });
+      // **LLAMA A LA IMPORTACIÓN DINÁMICA AQUÍ**
+      const faceapi = await importFaceApi();
 
+      const opts = new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.5 });
       const detect = async (ts: number) => {
         if (stop) return;
 
