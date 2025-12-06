@@ -171,7 +171,7 @@ const profileImageSrc = getRandomImage(RANDOM_PROFILE_IMAGES);
             Stack Recurrente
           </h1>
           
-          <div className="w-full max-w-6xl"> 
+          <div className="w-full max-w-9xl"> 
             <CarouselTech />
           </div>
         </div>
