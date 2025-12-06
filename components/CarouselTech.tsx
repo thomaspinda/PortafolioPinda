@@ -12,12 +12,12 @@ export default function CarouselTech() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
   
-  // CONFIGURACIÓN DE VELOCIDAD
-  const baseSpeed = 3;  // Velocidad constante suave
-  const hoverSpeed = 10;   // Velocidad rápida al hacer hover
+  // CONFIGURACIÓN
+  const baseSpeed = 3;  // Velocidad constante suave (Móvil y PC reposo)
+  const hoverSpeed = 8;   // Velocidad rápida (Solo PC hover)
   
-  // Inicializamos con la velocidad base para que se mueva siempre
   const speedRef = useRef(baseSpeed); 
+  const isDraggingRef = useRef(false); // Para detectar si el usuario está tocando la pantalla (móvil)
 
   const [selectedTech, setSelectedTech] = useState<TechItem | null>(null);
 
@@ -76,7 +76,6 @@ export default function CarouselTech() {
     const container = scrollRef.current;
     if (!container) return;
 
-    // Inicializamos un poco desplazado para que el "atrás" funcione inmediatamente
     if (container.scrollLeft === 0) {
         container.scrollLeft = 1; 
     }
@@ -89,8 +88,10 @@ export default function CarouselTech() {
       const dt = now - lastTime;
       lastTime = now;
 
-      // Si hay una tarjeta seleccionada, pausamos el movimiento (speedRef no afecta)
-      if (!selectedTech) {
+      // Pausamos animación si:
+      // 1. Hay una tarjeta abierta (selectedTech)
+      // 2. El usuario está tocando/arrastrando en móvil (isDraggingRef)
+      if (!selectedTech && !isDraggingRef.current) {
         const px = speedRef.current * (dt / 16.67);
         container.scrollLeft += px;
 
@@ -112,42 +113,47 @@ export default function CarouselTech() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [selectedTech]); // Dependencia selectedTech para pausar/reanudar lógica
+  }, [selectedTech]);
 
   return (
-    <div className="relative w-full py-15 group">
+    <div className="relative w-full py-12 group">
       
-      {/* --- ZONA IZQUIERDA (Retroceder Rápido) --- */}
+      {/* --- ZONA IZQUIERDA (SOLO PC) --- */}
+      {/* Nota la clase 'hidden md:flex': Oculto en móvil, Flex en pantallas medianas hacia arriba */}
       <div 
-        className="absolute left-0 top-12 bottom-12 w-16 md:w-24 z-20 
-                   
-                   flex items-center justify-start pl-2 md:pl-4
+        className="hidden md:flex absolute left-0 top-12 bottom-12 w-24 z-20 
+                   items-center justify-start pl-4
                    cursor-w-resize transition-opacity duration-300"
-        onMouseEnter={() => { speedRef.current = -hoverSpeed; }} // Velocidad negativa rápida
-        onMouseLeave={() => { speedRef.current = baseSpeed; }}   // Vuelve a velocidad base
+        onMouseEnter={() => { speedRef.current = -hoverSpeed; }}
+        onMouseLeave={() => { speedRef.current = baseSpeed; }}
       >
         <div className="p-2 rounded-full bg-white/10 border border-white/5 backdrop-blur-md shadow-lg animate-pulse">
-            <ChevronLeft className="text-white w-6 h-6 md:w-8 md:h-8" />
+            <ChevronLeft className="text-white w-8 h-8" />
         </div>
       </div>
 
-      {/* --- ZONA DERECHA (Avanzar Rápido) --- */}
+      {/* --- ZONA DERECHA (SOLO PC) --- */}
+      {/* Nota la clase 'hidden md:flex' */}
       <div 
-        className="absolute right-0 top-12 bottom-12 w-16 md:w-24 z-20 
-                   flex items-center justify-end pr-2 md:pr-4
+        className="hidden md:flex absolute right-0 top-12 bottom-12 w-24 z-20 
+                   items-center justify-end pr-4
                    cursor-e-resize transition-opacity duration-300"
-        onMouseEnter={() => { speedRef.current = hoverSpeed; }} // Velocidad positiva rápida
-        onMouseLeave={() => { speedRef.current = baseSpeed; }}  // Vuelve a velocidad base
+        onMouseEnter={() => { speedRef.current = hoverSpeed; }}
+        onMouseLeave={() => { speedRef.current = baseSpeed; }}
       >
         <div className="p-2 rounded-full bg-white/10 border border-white/5 backdrop-blur-md shadow-lg animate-pulse">
-            <ChevronRight className="text-white w-6 h-6 md:w-8 md:h-8" />
+            <ChevronRight className="text-white w-8 h-8" />
         </div>
       </div>
 
       {/* --- CONTENEDOR CARRUSEL --- */}
       <div
         ref={scrollRef}
-        className="w-full overflow-x-hidden select-none relative z-10"
+        // Agregamos eventos de toque para móviles para pausar el auto-scroll mientras se desliza con el dedo
+        onTouchStart={() => { isDraggingRef.current = true; }}
+        onTouchEnd={() => { isDraggingRef.current = false; }}
+        className="w-full overflow-x-auto scrollbar-hide select-none relative z-10"
+        style={{ scrollBehavior: "auto" }} // Importante para que el scroll manual en móvil no se sienta pesado
       >
         <div className="inline-flex gap-6 px-4 py-2">
           {duplicated.map((item, index) => (
@@ -160,6 +166,7 @@ export default function CarouselTech() {
                 cursor-pointer transition-all duration-300
                 border border-white/10 bg-white/5
                 hover:scale-105 hover:bg-white/10 hover:border-violet-500/30
+                active:scale-95  // Feedback visual al tocar en móvil
                 ${selectedTech?.name === item.name ? "ring-2 ring-violet-500 scale-105 bg-white/10" : ""}
               `}
             >
@@ -172,8 +179,8 @@ export default function CarouselTech() {
 
       {/* --- MODAL / DETALLE --- */}
       {selectedTech && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="relative w-full max-w-md bg-slate-900 border border-slate-700 rounded-3xl p-8 shadow-2xl ring-1 ring-white/10">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm rounded-2xl animate-in fade-in duration-200">
+          <div className="relative w-full max-w-md   backdrop-blur-xl  rounded-3xl p-8 shadow-2xl ring-1 ring-white/10">
             
             <button 
               onClick={(e) => { e.stopPropagation(); handleClose(); }}
@@ -187,7 +194,7 @@ export default function CarouselTech() {
                 <img src={selectedTech.src} alt={selectedTech.name} className="w-24 h-24 object-contain" />
               </div>
               <h3 className="text-3xl font-bold text-white mb-2">{selectedTech.name}</h3>
-              <div className="h-1 w-20 bg-gradient-to-r from-violet-500 to-amber-300 rounded-full mb-4"></div>
+              <div className="h-1 w-20 bg-linear-to-r from-violet-500 to-amber-300 rounded-full mb-4"></div>
               <p className="text-slate-300 leading-relaxed">
                 {selectedTech.description}
               </p>
