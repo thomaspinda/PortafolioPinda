@@ -68,7 +68,7 @@ export default async function Home() {
           <div className="relative w-48 h-48 mb-6 rounded-full p-1 bg-linear-to-tr from-violet-500 to-amber-300 shadow-[0_0_30px_rgba(139,92,246,0.3)]">
             <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
               <Image 
-                src="images/Yo.jpg"
+                src="/images/Yo.jpg"
                 alt="Thomas Pinda"
                 fill
                 className="object-cover"
