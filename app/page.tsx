@@ -5,40 +5,13 @@ import { Header } from "@/components/Header";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub, faReact, faNodeJs, faPython } from '@fortawesome/free-brands-svg-icons';
-import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
-import { promises as fs } from 'fs';
-import path from 'path';
-import { RANDOM_PROFILE_IMAGES, DEFAULT_PROFILE_IMAGE } from "@/app/config/profileImages";
+import { faReact, faNodeJs, faPython, faHtml5, faBootstrap} from '@fortawesome/free-brands-svg-icons';
+import { SiNextdotjs, SiTailwindcss, SiDjango } from "react-icons/si";
 
-  const imagesDir = path.join(process.cwd(), 'public', 'images', 'random-profile');
-  async function getProfileImages() {
-  try {
-    // Leer el contenido del directorio
-    const filenames = await fs.readdir(imagesDir);
 
-    // Filtrar para asegurarse de que solo se incluyan archivos de imagen
-    const imageFiles = filenames.filter(file => 
-      /\.(jpe?g|png|gif|webp)$/i.test(file) // Expresión regular para tipos comunes de imagen
-    );
 
-    // Mapear los nombres de archivo a sus rutas públicas
-    return imageFiles.map(file => `/images/random-profile/${file}`);
-  } catch (error) {
-    console.error("Error al leer el directorio de imágenes:", error);
-    return []; // Retorna un array vacío si hay un error
-  }
-}
-const getRandomImage = (images: string[]) => {
-  if (images.length === 0) return DEFAULT_PROFILE_IMAGE; // Imagen de respaldo
-  const randomIndex = Math.floor(Math.random() * images.length);
-  return images[randomIndex];
-};
 export default async function Home() {
-  const randomProfileImages = await getProfileImages();
   
-const profileImageSrc = getRandomImage(RANDOM_PROFILE_IMAGES);
   const projects = [
 
   {
@@ -52,6 +25,19 @@ const profileImageSrc = getRandomImage(RANDOM_PROFILE_IMAGES);
       { icon: SiTailwindcss, name: "Tailwind CSS" },
       { icon: SiNextdotjs, name: "Next.js" },
     ],
+  },
+  {
+    title: "Sistema de Gestión Contable",
+    description: "Aplicación web para la gestión de pequeñas empresas.",
+    imageSrc: "/images/Sistema_Contable.png",
+    liveLink: "https://github.com/thomaspinda/sistema_contable",
+    techStack: [
+      { icon: faNodeJs, name: "Node.js" },
+      { icon: faPython, name: "Python" },
+      { icon: faHtml5, name: "HTML5" },
+      { icon: faBootstrap, name: "Bootstrap" },
+      { icon: SiDjango, name: "Django" },
+      ],
   },
 ];
   return (
@@ -82,7 +68,7 @@ const profileImageSrc = getRandomImage(RANDOM_PROFILE_IMAGES);
           <div className="relative w-48 h-48 mb-6 rounded-full p-1 bg-linear-to-tr from-violet-500 to-amber-300 shadow-[0_0_30px_rgba(139,92,246,0.3)]">
             <div className="w-full h-full rounded-full overflow-hidden relative bg-black">
               <Image 
-                src={profileImageSrc} 
+                src="images/Yo.jpg"
                 alt="Thomas Pinda"
                 fill
                 className="object-cover"
@@ -180,7 +166,7 @@ const profileImageSrc = getRandomImage(RANDOM_PROFILE_IMAGES);
           <div className="pointer-events-auto w-full flex flex-col items-center">
             <h1 className="text-5xl font-bold mb-10 text-white">Proyectos Destacados</h1>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
               {projects.map((project, index) => (
                 <ProjectCard 
                   key={index}
