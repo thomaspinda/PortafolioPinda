@@ -6,7 +6,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { faReact, faNodeJs, faPython, faHtml5, faBootstrap, faAndroid} from '@fortawesome/free-brands-svg-icons';
-import { SiNextdotjs, SiTailwindcss, SiDjango, SiExpo } from "react-icons/si";
+import { SiNextdotjs, SiTailwindcss, SiDjango, SiExpo, SiAndroidstudio} from "react-icons/si";
 
 
 
@@ -47,7 +47,7 @@ export default async function Home() {
     techStack: [
       { icon: faReact, name: "React Native" },
       { icon: faNodeJs, name: "Node.js" },
-      { icon: faAndroid, name: "Android Studio" },
+      { icon: SiAndroidstudio, name: "Android Studio" },
       { icon: SiExpo, name: "Expo" },
     ],
   },
