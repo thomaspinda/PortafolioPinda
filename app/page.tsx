@@ -5,8 +5,8 @@ import { Header } from "@/components/Header";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
-import { faReact, faNodeJs, faPython, faHtml5, faBootstrap} from '@fortawesome/free-brands-svg-icons';
-import { SiNextdotjs, SiTailwindcss, SiDjango } from "react-icons/si";
+import { faReact, faNodeJs, faPython, faHtml5, faBootstrap, faAndroid} from '@fortawesome/free-brands-svg-icons';
+import { SiNextdotjs, SiTailwindcss, SiDjango, SiExpo } from "react-icons/si";
 
 
 
@@ -38,6 +38,18 @@ export default async function Home() {
       { icon: faBootstrap, name: "Bootstrap" },
       { icon: SiDjango, name: "Django" },
       ],
+  },
+  {
+    title: "Calculadora para Android",
+    description: "Aplicación móvil de calculadora científica desarrollada con React Native.",
+    imageSrc: "/images/CalculadoraReactNative.png",
+    liveLink: "https://github.com/thomaspinda/CalculadoraReactNative",
+    techStack: [
+      { icon: faReact, name: "React Native" },
+      { icon: faNodeJs, name: "Node.js" },
+      { icon: faAndroid, name: "Android Studio" },
+      { icon: SiExpo, name: "Expo" },
+    ],
   },
 ];
   return (

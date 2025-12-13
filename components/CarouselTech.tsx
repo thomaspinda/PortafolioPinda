@@ -55,6 +55,8 @@ export default function CarouselTech() {
     { name: "Android Studio", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg", description: "IDE oficial para el desarrollo de Android." },
     { name: "Blender", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg", description: "Suite de creación 3D de código abierto." },
     { name: "Unity", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg", description: "Motor de desarrollo de videojuegos multiplataforma." },
+    { name: "React Native", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", description: "Framework para construir aplicaciones móviles con React." },
+    { name: "Expo", src: "https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/expo/expo-original-wordmark.svg", description: "Herramienta para desarrollar y construir aplicaciones React Native." },
   ];
 
   // Triplicamos para un loop infinito suave
