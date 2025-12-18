@@ -4,6 +4,7 @@ import ExperienceCards from "@/components/ExperienceCards";
 import { Header } from "@/components/Header";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Footer } from "@/components/Footer";
+import { BotonCV } from "@/components/BotonCV";
 import Image from "next/image";
 import { faReact, faNodeJs, faPython, faHtml5, faBootstrap, faAndroid} from '@fortawesome/free-brands-svg-icons';
 import { SiNextdotjs, SiTailwindcss, SiDjango, SiExpo, SiAndroidstudio} from "react-icons/si";
@@ -115,6 +116,7 @@ export default async function Home() {
                 GitHub
               </span>
             </a>
+            <BotonCV/>
           </div>
         </div>
 
