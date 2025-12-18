@@ -50,6 +50,7 @@ export default function CarouselTech() {
     { name: "Bootstrap", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg", description: "Toolkit para desarrollo frontend responsivo." },
     { name: "Angular", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg", description: "Plataforma para construir aplicaciones web móviles y de escritorio." },
     { name: "Vue.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", description: "Framework progresivo para interfaces de usuario." },
+    { name: "Vite", src: "https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/vite/vite-original.svg", description: "Herramienta de construcción rápida para proyectos web." },
     { name: "Flutter", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", description: "UI Toolkit de Google para aplicaciones nativas." },
     { name: "Dart", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg", description: "Lenguaje optimizado para UI rápida en cualquier plataforma." },
     { name: "Android Studio", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg", description: "IDE oficial para el desarrollo de Android." },
